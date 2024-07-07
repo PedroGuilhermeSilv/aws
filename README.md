@@ -30,3 +30,15 @@
 
 
 ## Foundation
+![Root Account](./IMG/image.png)
+### Master account
+- Um dos problemas iniciais na criação de uma conta para subir seus projetos é a organização. Uma ideia é ter uma "root account" que gerenciará todas as demais contas.
+- Conta com e-mail único.
+### Organizational Unit(OU)
+Podemos fazer o controle de recursos com base na organization. Por exemplo:
+- Dev: utiliza apenas maquinas mais fracas, só pode usar servidores de São Paulo.
+
+### Accounts
+- Em uma conta de dev por exemplo crie um email para a equipe e não use email pessoais.
+
+F014
