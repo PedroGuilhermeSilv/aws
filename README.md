@@ -9,6 +9,12 @@
 - Elasticidade
 
 
+## Distribuição da AWS no Mundo
+
+- Região
+- Zona de Disponibilidade
+- Zona local
+
 
 ### Modelos de Serviços Resumo
 
@@ -30,7 +36,7 @@
 
 
 ## Foundation
-![Root Account](./IMG/image.png)
+![Root Account](./img/image.png)
 ### Master account
 - Um dos problemas iniciais na criação de uma conta para subir seus projetos é a organização. Uma ideia é ter uma "root account" que gerenciará todas as demais contas.
 - Conta com e-mail único.
@@ -41,4 +47,4 @@ Podemos fazer o controle de recursos com base na organization. Por exemplo:
 ### Accounts
 - Em uma conta de dev por exemplo crie um email para a equipe e não use email pessoais.
 
-F014
+A0348
