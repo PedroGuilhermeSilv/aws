@@ -15,6 +15,37 @@
 - Zona de Disponibilidade
 - Zona local
 
+## IAM (Identity & Access Management)
+
+- **Policy**: Objeto que define os acesso aos recursos a AWS
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [],
+			"Resource": ["ARN"]
+		}
+	]
+}
+```
+- **ARN - Amazon Resource Names**
+    - arn:partition:service:region:account-id:resource-id
+    - arn:partition:service:region:account-id:resource-type/resource-id
+    - arn:partition:service:region:account-id:resource-type:resource-id
+
+    - **parition**: representa em qual grupo de região a conta pertence
+    - **servie**: nome do serviço que identifica o produto da AWS
+    - **regiao**: cod da região
+    - **account-id**: id da sua conta
+    - **resource-id**: id do recurso
+
+
+- **Group**: Cada grupo vai ter suas politicas de uso, facilitando agrupar e gerencias accounts e acesso.
+- **Role**: Podemos permitir acesso entre serviços da aws utilizando a role
+
 
 ### Modelos de Serviços Resumo
 
