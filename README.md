@@ -8,6 +8,16 @@
 - Escalabilidade
 - Elasticidade
 
+## Deployment models
+- Private Cloud
+- Public Cloud
+- Hybrid Cloud
+- Multicloud
+- Community
+
+## Well-Architecture
+- E um formulário dentro da AWS para verificar se utiliza os padrões da aws. Focando em Pilars, Design Principles e Questions
+- Os 5 pilares são:  operational excellence, security, reliability, performance efficiency, and cost optmization.
 
 ## Distribuição da AWS no Mundo
 
@@ -109,4 +119,29 @@ Podemos fazer o controle de recursos com base na organization. Por exemplo:
 
 6. **Tabela de Rotas**: Uma tabela de rotas define como o tráfego de rede é direcionado dentro da VPC. Cada sub-rede é associada a uma tabela de rotas que determina para onde o tráfego deve ser enviado com base nos endereços IP de destino. As rotas podem ser configuradas para direcionar o tráfego para um Internet Gateway, NAT Gateway, outras sub-redes dentro da VPC ou mesmo conexões VPN para redes on-premises.
 
-A0348
+
+## Groups vs  Roles
+-   Groups podem receber uma lista de polices que podemos reutilizar para aplicar em um grupo de usuarios do mesmo perfil.
+- Roles também pode agrupar polices porém ele é aplicado a um recurso da aws como um ec2 poder ter acesso uma banco da aws. Lembrando,, que somente serviços gerenciados pela aws iram funcionar nesse tipo de gerenciamento.  
+
+
+## Cross Account
+- Podemos fazer a mudança de funçção sem precisar deslogar e logar apenas fazendo um salto de contas criando roles entre funções, onde informamos de qual conta ele pode saltar e passamos as polices que ele vai possuir naquela outra conta.
+
+Como podemos fazer uma arquitetura de contas Master Account >- Conta IAM (dentro dessa conta criamos usuários IAM)
+
+# EBS
+- e o serviço de storage da aws, podemos criar um ebs e atachar a um ec2 porém temos que montar esse dir.
+
+# EC2
+- Podemos também adicionar comandos para serem executados na inicialização do ec2 basta adicionar em "user data".
+- Podemos criar snapshots que são imagens tiradas da nossa instância, lembre-se de pausar a ec2 para executar. A partir desse snapshots podemos criar AMIs que podemos criar outras intâncias com base nessa AMIs.
+- Caso queira migrar sua instância de região é possível fazer isso através da AMIs criando uma copy.
+- `Placement Group`  é um recurso que permite controlar a localização física de instâncias EC2 dentro de uma mesma região ou zona de disponibilidade, otimizando a comunicação entre elas ou melhorando a resiliência. Existem três tipos principais de Placement Groups:
+
+	- `Cluster`: Agrupa instâncias em um único rack de hardware, oferecendo baixa latência e alta taxa de transferência entre elas. É ideal para workloads que exigem forte conectividade, como simulações de alto desempenho ou análises em tempo real.
+
+    - `Partition`: Distribui instâncias em diferentes partições, cada uma isolada em termos de falhas de hardware, o que aumenta a resiliência. Usado em aplicações distribuídas como Hadoop, Cassandra e HDFS, onde a falha de um grupo de instâncias não deve afetar as demais.
+
+    - `Spread`: Garante que cada instância seja alocada em um hardware físico separado, aumentando a disponibilidade ao reduzir o risco de falhas correlacionadas. Esse tipo é útil para workloads que precisam de alta disponibilidade, como aplicações críticas e bancos de dados.
+- `Meta-data`: Para obter informações de metadados dentro de uma instância EC2 na AWS, você pode fazer isso através do serviço de metadados da instância. Esses metadados fornecem informações sobre a instância, como seu ID, tipo, zona de disponibilidade, credenciais temporárias, entre outros. Dentro de uma instância EC2, você pode usar um simples comando curl para acessar esses dados. A URL usada para isso é a seguinte: http://169.254.169.254/latest/meta-data/.
