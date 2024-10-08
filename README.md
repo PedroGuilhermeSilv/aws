@@ -145,3 +145,36 @@ Como podemos fazer uma arquitetura de contas Master Account >- Conta IAM (dentro
 
     - `Spread`: Garante que cada instância seja alocada em um hardware físico separado, aumentando a disponibilidade ao reduzir o risco de falhas correlacionadas. Esse tipo é útil para workloads que precisam de alta disponibilidade, como aplicações críticas e bancos de dados.
 - `Meta-data`: Para obter informações de metadados dentro de uma instância EC2 na AWS, você pode fazer isso através do serviço de metadados da instância. Esses metadados fornecem informações sobre a instância, como seu ID, tipo, zona de disponibilidade, credenciais temporárias, entre outros. Dentro de uma instância EC2, você pode usar um simples comando curl para acessar esses dados. A URL usada para isso é a seguinte: http://169.254.169.254/latest/meta-data/.
+
+# VPC (Virtual Private Cloud)
+
+![VPC ](./img/vpclinux.png)
+
+- **VPC (Virtual Private Cloud)**: Uma rede virtual isolada na AWS, onde você pode rodar recursos e definir sua própria faixa de IP, subnets, roteamento e regras de segurança.
+
+- **Subnets (Sub-redes)**: Divisões lógicas do VPC. Subnets públicas têm acesso à internet, enquanto subnets privadas são isoladas.
+
+- **Internet Gateway (IGW)**: Componente que conecta o VPC à internet, permitindo que subnets públicas tenham comunicação externa.
+
+- **Route Table (Tabela de Roteamento)**: Define como o tráfego de rede é direcionado. Subnets públicas têm uma rota para o IGW, enquanto subnets privadas têm rotas restritas para comunicação interna ou saída controlada.
+
+# Diferenças de Security Groups para Network-ACL:
+
+- Stateful vs Stateless: Os Security Groups são stateful, o que significa que o tráfego de resposta a uma solicitação permitida é automaticamente permitido, independentemente das regras. As Network ACLs são stateless, ou seja, se você permitir tráfego de entrada, também precisará criar uma regra de saída correspondente para permitir as respostas.
+
+- Escopo: Security Groups operam em nível de instância (EC2, por exemplo), enquanto Network ACLs operam em nível de sub-rede.
+
+### **NAT Gateway**:
+- **Propósito**: Permite que instâncias em sub-redes privadas façam **tráfego de saída** para a internet, bloqueando o tráfego de entrada.
+- **Gerenciamento**: Gerenciado pela AWS (escalável e de alta disponibilidade).
+- **Uso**: Recomendado quando você quer simplicidade e não quer se preocupar com gerenciamento manual.
+
+### **NAT Instance**:
+- **Propósito**: Também permite o **tráfego de saída** para a internet de sub-redes privadas, bloqueando o tráfego de entrada.
+- **Gerenciamento**: O usuário deve gerenciar manualmente (escalabilidade, atualizações, falhas).
+- **Uso**: Oferece mais controle e customização, mas requer mais trabalho do usuário.
+
+**Diferença principal**: O **NAT Gateway** é uma solução gerenciada e automatizada, enquanto a **NAT Instance** exige configuração e manutenção manual.
+
+# Elastic IP
+O Elastic IP (EIP) na AWS é um endereço IP público estático que pode ser associado a instâncias EC2, NAT Gateways, ou outros recursos. Ele serve para garantir que um recurso tenha um endereço IP público fixo, mesmo que o recurso (como uma instância EC2) seja interrompido ou reiniciado.
